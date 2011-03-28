@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OBConnector", "OBConnector\OBConnector.csproj", "{75D83ACC-27BD-45AD-8238-083D23CEA65C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InitializeConfig", "InitializeConfig\InitializeConfig.csproj", "{BAA552E6-3FEF-4C24-AC15-7E8C8F16A6E6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{586DFA5D-BC36-44E6-A3AF-773D7EB6069C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barcode_Test", "Barcode_Test\Barcode_Test.csproj", "{EFD9F523-8A64-4CEC-A878-53655E546BDF}"
@@ -25,10 +23,6 @@ Global
 		{75D83ACC-27BD-45AD-8238-083D23CEA65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75D83ACC-27BD-45AD-8238-083D23CEA65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75D83ACC-27BD-45AD-8238-083D23CEA65C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BAA552E6-3FEF-4C24-AC15-7E8C8F16A6E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BAA552E6-3FEF-4C24-AC15-7E8C8F16A6E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BAA552E6-3FEF-4C24-AC15-7E8C8F16A6E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BAA552E6-3FEF-4C24-AC15-7E8C8F16A6E6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{586DFA5D-BC36-44E6-A3AF-773D7EB6069C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{586DFA5D-BC36-44E6-A3AF-773D7EB6069C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{586DFA5D-BC36-44E6-A3AF-773D7EB6069C}.Release|Any CPU.ActiveCfg = Release|Any CPU

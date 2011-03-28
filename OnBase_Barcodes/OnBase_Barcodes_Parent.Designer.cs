@@ -60,8 +60,8 @@
             this.ConnStatusLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.GenBarcodeBtn = new System.Windows.Forms.Button();
             this.DocListChkLst = new System.Windows.Forms.CheckedListBox();
+            this.GenBarcodeBtn = new System.Windows.Forms.Button();
             this.PacketPDFPanel = new AxAcroPDFLib.AxAcroPDF();
             this.PDFStatus = new System.Windows.Forms.StatusStrip();
             this.axAcroPDF2 = new AxAcroPDFLib.AxAcroPDF();
@@ -317,6 +317,16 @@
             this.splitContainer1.SplitterDistance = 286;
             this.splitContainer1.TabIndex = 4;
             // 
+            // DocListChkLst
+            // 
+            this.DocListChkLst.CheckOnClick = true;
+            this.DocListChkLst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DocListChkLst.FormattingEnabled = true;
+            this.DocListChkLst.Location = new System.Drawing.Point(0, 0);
+            this.DocListChkLst.Name = "DocListChkLst";
+            this.DocListChkLst.Size = new System.Drawing.Size(286, 379);
+            this.DocListChkLst.TabIndex = 0;
+            // 
             // GenBarcodeBtn
             // 
             this.GenBarcodeBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -327,16 +337,6 @@
             this.GenBarcodeBtn.Text = "Generate Barcode Packet";
             this.GenBarcodeBtn.UseVisualStyleBackColor = true;
             this.GenBarcodeBtn.Click += new System.EventHandler(this.GenBarcodeBtn_Click);
-            // 
-            // DocListChkLst
-            // 
-            this.DocListChkLst.CheckOnClick = true;
-            this.DocListChkLst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DocListChkLst.FormattingEnabled = true;
-            this.DocListChkLst.Location = new System.Drawing.Point(0, 0);
-            this.DocListChkLst.Name = "DocListChkLst";
-            this.DocListChkLst.Size = new System.Drawing.Size(286, 379);
-            this.DocListChkLst.TabIndex = 0;
             // 
             // PacketPDFPanel
             // 
