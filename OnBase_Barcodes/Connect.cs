@@ -40,12 +40,14 @@ namespace OnBase_Barcodes
             {
                 m_Connect = new Connect();
             }
+            m_Connect.LoadConnections();
             return m_Connect;
         }
 
         public void LoadConnections()
         {
             String ConnectionString;
+            ConnectionsCbo.Items.Clear();
             for (Int16 x = 0; x < Properties.Settings.Default.ConnectionStrings.Count; x++)
             {
                 ConnectionString = Properties.Settings.Default.ConnectionStrings[x];

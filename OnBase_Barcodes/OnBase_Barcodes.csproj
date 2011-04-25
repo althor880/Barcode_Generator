@@ -58,6 +58,12 @@
     <Compile Include="Connect.Designer.cs">
       <DependentUpon>Connect.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewConnection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewConnection.Designer.cs">
+      <DependentUpon>NewConnection.cs</DependentUpon>
+    </Compile>
     <Compile Include="OnBase_Barcodes_Parent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Connect.resx">
       <DependentUpon>Connect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewConnection.resx">
+      <DependentUpon>NewConnection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OnBase_Barcodes_Parent.resx">
       <DependentUpon>OnBase_Barcodes_Parent.cs</DependentUpon>

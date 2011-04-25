@@ -69,10 +69,7 @@ namespace OnBase_Barcodes
             this.Close();
         }
 
-        private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ParentStatus.Visible = statusBarToolStripMenuItem.Checked;
-        }
+       
 
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -121,6 +118,16 @@ namespace OnBase_Barcodes
                     CheckedListBoxItem clbItem = new CheckedListBoxItem((System.String)DocTypeTable.Rows[x][1], System.Decimal.ToInt32((System.Decimal)DocTypeTable.Rows[x][0]));
                     DocListChkLst.Items.Add(clbItem);
                 }
+            }
+        }
+
+        private void newConnectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewConnection newConnForm = new NewConnection();
+            if (newConnForm.ShowDialog(this) == DialogResult.OK)
+            {
+                Properties.Settings.Default.ConnectionStrings.Add("[" + newConnForm.ConnName + "]Data Source=10.209.41.166:1521/" + newConnForm.DSName.ToUpper() + ";User ID=viewer;Password=cprt_hsi;Unicode=True");
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -204,6 +211,44 @@ namespace OnBase_Barcodes
             return barCode;
         }
 
+        private static Bitmap CreateLabel(String data)
+        {
+            data = data.ToUpper();
+
+            Bitmap docTypeLabel = new Bitmap(1, 1);
+
+            System.Drawing.Font timesNR = new System.Drawing.Font("Times New Roman", 80, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+
+            Graphics graphics = Graphics.FromImage(docTypeLabel);
+
+            SizeF dataSize = new SizeF();
+
+            SizeF dataSize_text = graphics.MeasureString(data, timesNR);
+
+            dataSize.Width = dataSize_text.Width;
+
+            dataSize.Height = dataSize_text.Height;
+
+            docTypeLabel = new Bitmap(docTypeLabel, dataSize.ToSize());
+
+            graphics = Graphics.FromImage(docTypeLabel);
+
+            graphics.Clear(Color.White);
+
+            graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel;
+
+            graphics.DrawString(data, timesNR, new SolidBrush(Color.Black), ((dataSize.Width / 2f) - (dataSize_text.Width / 2f)), 0);
+
+            graphics.Flush();
+
+            timesNR.Dispose();
+
+            graphics.Dispose();
+
+            return docTypeLabel;
+
+        }
+
         private static void WriteTempPDF(ArrayList docTypeArray)
         {
             Document doc = new Document(PageSize.LETTER);
@@ -212,21 +257,34 @@ namespace OnBase_Barcodes
                 PdfWriter.GetInstance(doc, new FileStream(Properties.Settings.Default.TempDirectory + @"\Temp.pdf", FileMode.Create));
                 doc.Open();
 
-                Bitmap OBSelfConfigBarcode = CreateBarcode("OBSELFCONFIG");
-                iTextSharp.text.Image OBSFBBitmap = iTextSharp.text.Image.GetInstance(OBSelfConfigBarcode, System.Drawing.Imaging.ImageFormat.Bmp);
-                OBSFBBitmap.ScalePercent(8f);
-                OBSFBBitmap.SetAbsolutePosition(30f, doc.PageSize.Height - OBSFBBitmap.ScaledHeight - 30f);
+                //Bitmap OBSelfConfigBarcode = CreateBarcode("OBSELFCONFIG");
+                //iTextSharp.text.Image OBSFBBitmap = iTextSharp.text.Image.GetInstance(OBSelfConfigBarcode, System.Drawing.Imaging.ImageFormat.Bmp);
+                //OBSFBBitmap.ScalePercent(8f);
+                //OBSFBBitmap.SetAbsolutePosition(25.74f, 779.985f - OBSFBBitmap.ScaledHeight);
+
+                Bitmap thisSideUpLabel = CreateLabel("^^ This End Up ^^");
+                iTextSharp.text.Image upLabel = iTextSharp.text.Image.GetInstance(thisSideUpLabel, System.Drawing.Imaging.ImageFormat.Bmp);
+                upLabel.ScalePercent(8f);
+                upLabel.SetAbsolutePosition(((doc.PageSize.Width / 2f) - (upLabel.ScaledWidth / 2f)), doc.PageSize.Height - 60f);
 
                 for (Int32 x = 0; x < docTypeArray.Count; x++)
                 {
 
-                    doc.Add(OBSFBBitmap);
-                    
+                    //doc.Add(OBSFBBitmap);
+                    doc.Add(upLabel);
+                                                            
                     Bitmap barCode = CreateBarcode(((CheckedListBoxItem)docTypeArray[x]).ItemValue.ToString());
                     iTextSharp.text.Image bitmap = iTextSharp.text.Image.GetInstance(barCode, System.Drawing.Imaging.ImageFormat.Bmp);
-                    bitmap.ScalePercent(8f);
-                    bitmap.SetAbsolutePosition(doc.PageSize.Width - bitmap.ScaledWidth - 30f, doc.PageSize.Height - bitmap.ScaledHeight - 30f);
+                    bitmap.ScalePercent(20f);
+                    //bitmap.SetAbsolutePosition(doc.PageSize.Width - bitmap.ScaledWidth - 30f, doc.PageSize.Height - bitmap.ScaledHeight - 30f);
+                    bitmap.SetAbsolutePosition(((doc.PageSize.Width / 2f) - (bitmap.ScaledWidth / 2f)), doc.PageSize.Height - bitmap.ScaledHeight - 200f);
                     doc.Add(bitmap);
+
+                    Bitmap docTypeLabel = CreateLabel(((CheckedListBoxItem)docTypeArray[x]).DisplayName.ToString());
+                    iTextSharp.text.Image docLabel = iTextSharp.text.Image.GetInstance(docTypeLabel, System.Drawing.Imaging.ImageFormat.Bmp);
+                    docLabel.ScalePercent(20f);
+                    docLabel.SetAbsolutePosition(((doc.PageSize.Width / 2f) - (docLabel.ScaledWidth / 2f)), ((doc.PageSize.Height / 2f) - (docLabel.ScaledHeight / 2f)));
+                    doc.Add(docLabel);
 
                     if (x != (docTypeArray.Count - 1))
                     {
@@ -252,6 +310,8 @@ namespace OnBase_Barcodes
                 doc.Close();
             }
         }
+
+        
 
     }
 
