@@ -140,8 +140,12 @@ namespace OnBase_Barcodes
                 {
                     docTypeAr.Add((CheckedListBoxItem)DocListChkLst.CheckedItems[x]);
                 }
-                WriteTempPDF(docTypeAr);
-                PacketPDFPanel.src = Properties.Settings.Default.TempDirectory + @"\Temp.pdf";
+                Reorder reorderForm = new Reorder(docTypeAr);
+                if (reorderForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    WriteTempPDF(docTypeAr);
+                    PacketPDFPanel.src = Properties.Settings.Default.TempDirectory + @"\Temp.pdf";
+                }
                 
             }
             else
