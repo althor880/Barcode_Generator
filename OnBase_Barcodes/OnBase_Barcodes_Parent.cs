@@ -143,6 +143,7 @@ namespace OnBase_Barcodes
                 Reorder reorderForm = new Reorder(docTypeAr);
                 if (reorderForm.ShowDialog(this) == DialogResult.OK)
                 {
+                    docTypeAr = reorderForm.DocTypeAr;
                     WriteTempPDF(docTypeAr);
                     PacketPDFPanel.src = Properties.Settings.Default.TempDirectory + @"\Temp.pdf";
                 }

@@ -52,6 +52,7 @@
             this.btnItemUp.TabIndex = 1;
             this.btnItemUp.Text = "Move Item Up";
             this.btnItemUp.UseVisualStyleBackColor = true;
+            this.btnItemUp.Click += new System.EventHandler(this.btnItemUp_Click);
             // 
             // btnItemDown
             // 
@@ -61,6 +62,7 @@
             this.btnItemDown.TabIndex = 2;
             this.btnItemDown.Text = "Move Item Down";
             this.btnItemDown.UseVisualStyleBackColor = true;
+            this.btnItemDown.Click += new System.EventHandler(this.btnItemDown_Click);
             // 
             // btnRemove
             // 
@@ -70,6 +72,7 @@
             this.btnRemove.TabIndex = 3;
             this.btnRemove.Text = "Remove Item";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnContinue
             // 
@@ -79,6 +82,7 @@
             this.btnContinue.TabIndex = 4;
             this.btnContinue.Text = "Continue";
             this.btnContinue.UseVisualStyleBackColor = true;
+            this.btnContinue.Click += new System.EventHandler(this.btnContinue_Click);
             // 
             // Reorder
             // 
